@@ -81,3 +81,7 @@ JobInstance-->|execução Física| JobExecution(JobExecution)
 ### Complementares
 - [Desenvolvimento com Spring Batch — Overview](https://giuliana-bezerra.medium.com/spring-batch-para-desenvolvimento-de-jobs-1674ec5b9a20)
 - [Why you should be using Spring Batch for batch processing](https://giuliana-bezerra.medium.com/why-you-should-be-using-spring-batch-for-batch-processing-83f5aafb965f)
+
+### Detalhes Docker applicação 2
+
+docker container run -e MYSQL_PASSWORD=123456 -e MYSQL_DATABASE=spring_batch  --name spring_batch -p 3306:3306 mysql --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
