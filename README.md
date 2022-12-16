@@ -76,8 +76,52 @@ Job[Parâmentos de Execução] -->|execução lógica| JobInstance(JobInstance)
 JobInstance-->|execução Física| JobExecution(JobExecution)
 ```
 
+#### Persistência de metadados no banco de dados
+- Quantas execuções lógicas foram executadas
+```SELECT * FROM BATCH_JOB_INSTANCE;```
+- Quantas vezes o batch executou no total, mesmo com erros
+```SELECT * FROM BATCH_STEP_EXECUTION;```
+- Quais dados foram salvos
+```SELECT * FROM BATCH_JOB_EXECUTION_CONTEXT;```
+- Quais steps executaram
+```SELECT * FROM BATCH_STEP_EXECUTION;```
+- Informações dos Steps
+```SELECT * FROM BATCH_STEP_EXECUTION_CONTEXT;```
 
+#### Múltiplas execuções e escopo
+- limpar tabelas 
+```
+delete from BATCH_JOB_EXECUTION_CONTEXT;
+delete from BATCH_JOB_EXECUTION_PARAMS;
+delete from BATCH_JOB_EXECUTION_SEQ;
 
+delete from BATCH_STEP_EXECUTION_CONTEXT;
+delete from BATCH_STEP_EXECUTION_SEQ;
+delete from BATCH_STEP_EXECUTION;
+
+delete from BATCH_JOB_EXECUTION;
+delete from BATCH_JOB_INSTANCE;
+delete from BATCH_JOB_SEQ;
+```
+> Adicionando parâmetros para o projeto
+- Botão direito no projeto
+- run as
+- run configurations
+-  na janela que abre procure arguments e ensira o nome e valor
+    - nome=teste
+
+- A forma no qual o step define sua lógica o define como:
+    - *TASKLET*
+        - pequenas tarefas
+        - pré processamento
+        - limpeza de aquivos, criar diretórios, etc...
+    - *CHUNK*
+        - Tarefas complexas
+        - processamento em pedaços
+        - divididos em 
+            - Leitura
+            - Processamento
+            - Escrita
 ### Complementares
 - [Desenvolvimento com Spring Batch — Overview](https://giuliana-bezerra.medium.com/spring-batch-para-desenvolvimento-de-jobs-1674ec5b9a20)
 - [Why you should be using Spring Batch for batch processing](https://giuliana-bezerra.medium.com/why-you-should-be-using-spring-batch-for-batch-processing-83f5aafb965f)
