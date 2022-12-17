@@ -43,7 +43,7 @@ public class BatchConfig {
     public Step imprimeParImparStep() {
         return stepBuilderFactory
                 .get("imprimeParImparStep")
-                .<Integer, String>chunk(1)
+                .<Integer, String>chunk(10)
                 .reader(contaAteDezReader())
                 .processor(ParOuImparProcessor())
                 .writer(imprimeWriter())

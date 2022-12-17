@@ -122,9 +122,29 @@ delete from BATCH_JOB_SEQ;
             - Leitura
             - Processamento
             - Escrita
+####  Intervalo de Commit
+```select * from BATCH_STEP_EXECUTION; ```
+- COMMIT_COUNT
+    - Significa que a cada item lido foi criado uma nova transação
+    - roda consultar, segura em memória sem commitar os resultados
+```
+.<Integer, String>chunk(1)
+```
+- se o valor for muito alto tem que se avaliar, porque esse dado fica em memória e pode haver estouro de memória.
+
+![Execução do chunk](./assets/execucao_chunk.png)
+
+- Quando estava com o tamanho 1 commitou 11 vezes
+
+
+
 ### Complementares
 - [Desenvolvimento com Spring Batch — Overview](https://giuliana-bezerra.medium.com/spring-batch-para-desenvolvimento-de-jobs-1674ec5b9a20)
 - [Why you should be using Spring Batch for batch processing](https://giuliana-bezerra.medium.com/why-you-should-be-using-spring-batch-for-batch-processing-83f5aafb965f)
+- [Linguagem de domínio do Spring Batch](https://docs.spring.io/spring-batch/docs/current/reference/html/domain.html#domainLanguageOfBatch)
+- [Configuração do Job](https://giuliana-bezerra.medium.com/desenvolvimento-com-spring-batch-jobs-b4363dd6c676)
+- [Configuração de Step](https://giuliana-bezerra.medium.com/desenvolvimento-com-spring-batch-steps-4d42af2696ec)
+- []()
 
 ### Detalhes Docker applicação 2
 
