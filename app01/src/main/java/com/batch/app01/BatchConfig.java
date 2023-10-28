@@ -13,34 +13,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@EnableBatchProcessing
-@Configuration
+@EnableBatchProcessing // para trazer todas as features do spring batch, é necessário habilita-lo
+@Configuration // necessário ser uma classe de configuração
 public class BatchConfig {
  
     @Autowired
     private JobBuilderFactory jobBuilderFactory;
     @Autowired
     private StepBuilderFactory stepBuilderFactory;
-    
-    @Bean
+
+    // informa que um objeto existe para o contexto, pra ser injetado
+    @Bean // retorna um job
     public Job imprimeOlaJob() {
         return jobBuilderFactory
-                .get("imprimeOlaJob")
+                .get("imprimeOlaJob")// nome do job
+                /**
+                 * qual a logica do job, o job é dividido em etapas que são chamado de steps,
+                 * steps são encadeados para contér um lógica maior
+                 */
                 .start(imprimeOlaStep())
-                .build();
+                .build(); // construção do job
     }
     
     public Step imprimeOlaStep() {
         return stepBuilderFactory
-                .get("imprimeOlaStep")
-                .tasklet(new Tasklet() {
+                .get("imprimeOlaStep") // todos começam com get, que é o nome do step
+                .tasklet(new Tasklet() { // pequenas tarefas, que necessitam de pouco poder no processamento
                     
                     @Override
                     public RepeatStatus execute(StepContribution contribution,
                             ChunkContext chunkContext) throws Exception {
                         System.out.println("Olá mundo");
                         System.out.println("Executa a lógica");
-                        return RepeatStatus.FINISHED;
+                        return RepeatStatus.FINISHED; // indica que a tarefa terminou
                     }
                 }).build();
     }
