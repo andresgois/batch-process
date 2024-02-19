@@ -8,6 +8,7 @@
 > Instalando Java
 - sudo apt install openjdk-8-jdk
 - java -version
+  
 > Instalando Mysql
 - sudo apt install mysql-server
 - Colocar senha
@@ -18,6 +19,7 @@
     - exit
     - mysql -u nome_user -p
     - create database spring_batch;
+  
 > Instalando STS
 - [STS](https://spring.io/tools)
 - mkdir Tools
@@ -25,6 +27,7 @@
 - curl https://download.springsource.com/release/STS4/4.17.0.RELEASE/dist/e4.26/spring-tool-suite-4-4.17.0.RELEASE-e4.26.0-linux.gtk.x86_64.tar.gz --output sts4.17.0.tar.gz
 - tar -xf sts4.17.0.tar.gz
 > Cria um lançador para o arquivo
+
 - vim ~/.local/share/applications/sts.desktop
 ```
 [Desktop Entry]
@@ -38,6 +41,7 @@ Terminal=false
 StartupNotify=false
 Categories=Development
 ```
+
 #### Windows
 - [Java](https://www.oracle.com/br/java/technologies/javase/javase8u211-later-archive-downloads.html)
 - java -version
@@ -146,6 +150,17 @@ delete from BATCH_JOB_SEQ;
 - [Configuração de Step](https://giuliana-bezerra.medium.com/desenvolvimento-com-spring-batch-steps-4d42af2696ec)
 - []()
 
-### Detalhes Docker applicação 2
 
-docker container run -e MYSQL_PASSWORD=123456 -e MYSQL_DATABASE=spring_batch  --name spring_batch -p 3306:3306 mysql --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+## Docker
+- Instalação e configuração do container do mysql
+```
+docker container run -e MYSQL_USER=andre -e MYSQL_PASSWORD=123456 -e MYSQL_DATABASE=process_batch -e MYSQL_ROOT_PASSWORD=123456 --name mysql-batch -p 3306:3306 mysql:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+```
+- Entra no container
+```
+mysql -h localhost -u andre -p
+show databases;
+use farmacia;
+show tables;
+select * from ;
+```
